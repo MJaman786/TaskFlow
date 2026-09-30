@@ -133,7 +133,7 @@ export default function TaskModal({ isOpen, onClose, mode, task }: TaskModalProp
                     { payload: { input: formik.values.title } },
                     {
                       onSuccess: (res) => {
-                        if (res.data) {
+                        if (res?.data) {
                           formik.setFieldValue('title', res.data.suggestedTitle || formik.values.title);
                           formik.setFieldValue('description', res.data.suggestedDescription || formik.values.description);
                           formik.setFieldValue('priority', res.data.suggestedPriority || formik.values.priority);

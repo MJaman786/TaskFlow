@@ -4,7 +4,7 @@ import { Eye, EyeClosed, AlertCircle } from "lucide-react";
 interface InputFieldProps {
   label?: string;
   icon?: React.ReactNode;
-  type?: "text" | "email" | "password" | "number" | "checkbox";
+  type?: "text" | "email" | "password" | "number" | "checkbox" | "datetime-local";
   name: string;
   placeholder?: string;
   inputClass?: string;
@@ -16,6 +16,8 @@ interface InputFieldProps {
   touched?: boolean;
   error?: string;
   disabled?: boolean;
+  min?: string | number;
+  max?: string | number;
 }
 
 export default function InputField({
@@ -32,7 +34,9 @@ export default function InputField({
   onBlur,
   touched,
   error,
-  disabled
+  disabled,
+  min,
+  max
 }: InputFieldProps) {
   const showError = Boolean(touched && error);
   const [isPasswordHidden, setPasswordHidden] = useState<boolean>(true);
@@ -102,6 +106,8 @@ export default function InputField({
             }
             ${inputClass}
           `}
+          min={min}
+          max={max}
         />
 
         {/* Password Visibility Toggle Button */}

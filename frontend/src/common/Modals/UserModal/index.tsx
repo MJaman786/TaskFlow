@@ -12,7 +12,7 @@ interface UserModalProps {
 }
 
 export default function UserModal({ isOpen, onClose, user }: UserModalProps) {
-  const { updateStatus, isUpdatingStatus, deleteUser, isDeleting } = useAdminMutations();
+  const { updateStatus, isUpdatingStatus, deleteUser, isDeletingUser } = useAdminMutations();
 
   if (!isOpen || !user) return null;
 
@@ -106,14 +106,14 @@ export default function UserModal({ isOpen, onClose, user }: UserModalProps) {
             <button
               type="button"
               onClick={handleDelete}
-              disabled={isDeleting}
+              disabled={isDeletingUser}
               className="w-full flex items-center justify-between p-3 rounded-lg border border-error/20 bg-error/5 hover:bg-error/10 text-error transition-colors cursor-pointer disabled:opacity-50"
             >
               <div className="flex items-center gap-2">
                 <Trash2 size={16} />
                 <span className="text-sm font-semibold">Delete Account</span>
               </div>
-              <span className="text-[10px] font-mono">{isDeleting ? 'Deleting...' : 'Permanent'}</span>
+              <span className="text-[10px] font-mono">{isDeletingUser ? 'Deleting...' : 'Permanent'}</span>
             </button>
           </div>
 
