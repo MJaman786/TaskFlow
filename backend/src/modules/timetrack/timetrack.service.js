@@ -65,6 +65,9 @@ export const stopTimer = async (userId, logId = null) => {
     // Get updated total time logged on this task
     const totalTaskSeconds = await TimeTrackModel.getTotalSecondsForTask(stoppedSession.task_id, userId);
 
+    // Update task status back to PENDING when timer stops
+    await TaskModel.update(stoppedSession.task_id, userId, { status: TASK_STATUS.PENDING });
+
     return {
         ...stoppedSession,
         totalTaskSeconds,
