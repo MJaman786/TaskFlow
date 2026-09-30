@@ -1,0 +1,341 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&display=swap");
+@import "tailwindcss";
+/* ─── 1. Design Token Layer (Light & Dark Mode) ─── */
+:root {
+  color-scheme: light;
+
+  /* Brand Core */
+  --primary: #000000;
+  --primary-active: #1a1a1a;
+  --on-primary: #ffffff;
+
+  /* Ink & Typography */
+  --ink: #171717;
+  --body: #60646c;
+  --body-strong: #171717;
+  --muted: #999999;
+  --muted-soft: #cccccc;
+
+  /* Interactive Links */
+  --text-link: #0d74ce;
+  --text-link-secondary: #476cff;
+  --accent-link-bright: #47c2ff;
+
+  /* Surfaces & Canvas */
+  --canvas: #ffffff;
+  --canvas-soft: #fafafa;
+  --surface-card: #ffffff;
+  --surface-strong: #f0f0f3;
+  --surface-dark: #171717;
+  --surface-dark-elevated: #1a1a1a;
+  --on-dark: #ffffff;
+  --on-dark-soft: #b0b4ba;
+
+  /* Hairlines & Dividers */
+  --hairline: #f0f0f3;
+  --hairline-soft: #f5f5f7;
+  --hairline-strong: #dcdee0;
+
+  /* Atmospheric Wash */
+  --sky-light: #cfe7ff;
+  --sky-mid: #a8c8e8;
+
+  /* Semantic Status */
+  --semantic-warning: #ab6400;
+  --semantic-preview: #8145b5;
+  --semantic-success: #16a34a;
+  --semantic-error: #eb8e90;
+
+  /* Elevation Shadows */
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.03);
+  --shadow-card-hover: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+.dark {
+  color-scheme: dark;
+
+  /* Brand Core */
+  --primary: #ffffff;
+  --primary-active: #e5e5e5;
+  --on-primary: #000000;
+
+  /* Ink & Typography */
+  --ink: #f4f4f6;
+  --body: #9da1aa;
+  --body-strong: #ffffff;
+  --muted: #6e717a;
+  --muted-soft: #3d3e44;
+
+  /* Interactive Links */
+  --text-link: #3b99fc;
+  --text-link-secondary: #6387ff;
+  --accent-link-bright: #67d3ff;
+
+  /* Surfaces & Canvas */
+  --canvas: #0c0c0e;
+  --canvas-soft: #121215;
+  --surface-card: #17171a;
+  --surface-strong: #222226;
+  --surface-dark: #070709;
+  --surface-dark-elevated: #1f1f24;
+  --on-dark: #ffffff;
+  --on-dark-soft: #8e929c;
+
+  /* Hairlines & Dividers */
+  --hairline: #222226;
+  --hairline-soft: #1a1a1d;
+  --hairline-strong: #323238;
+
+  /* Atmospheric Wash */
+  --sky-light: #162438;
+  --sky-mid: #1d3654;
+
+  /* Semantic Status */
+  --semantic-warning: #f59e0b;
+  --semantic-preview: #a855f7;
+  --semantic-success: #22c55e;
+  --semantic-error: #f87171;
+
+  /* Elevation Shadows */
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.3), 0 4px 12px rgba(0, 0, 0, 0.25);
+  --shadow-card-hover: 0 4px 20px rgba(0, 0, 0, 0.45);
+}
+
+/* ✅ 1. Font Poppins */
+
+/* Regular */
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins/Poppins-Regular.ttf") format("truetype");
+  font-weight: 400;
+}
+
+/* SemiBold */
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins/Poppins-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+}
+
+/* ExtraBold */
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins/Poppins-Bold.ttf") format("truetype");
+  font-weight: 700;
+}
+
+/* ─── 2. Tailwind v4 Theme Extension ─── */
+@theme {
+  /* Font Family Mappings (Auto-generates font-sans, font-inter, font-mono, font-code, font-poppins) */
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-inter: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", monospace;
+  --font-code: "JetBrains Mono", "Fira Code", monospace;
+  --font-poppins: "Poppins", sans-serif;
+
+  /* Colors mapped directly to CSS variables for instant theme adaptability */
+  --color-primary: var(--primary);
+  --color-primary-active: var(--primary-active);
+  --color-on-primary: var(--on-primary);
+
+  --color-ink: var(--ink);
+  --color-body: var(--body);
+  --color-body-strong: var(--body-strong);
+  --color-muted: var(--muted);
+  --color-muted-soft: var(--muted-soft);
+
+  --color-text-link: var(--text-link);
+  --color-text-link-secondary: var(--text-link-secondary);
+  --color-accent-link-bright: var(--accent-link-bright);
+
+  --color-canvas: var(--canvas);
+  --color-canvas-soft: var(--canvas-soft);
+  --color-surface-card: var(--surface-card);
+  --color-surface-strong: var(--surface-strong);
+  --color-surface-dark: var(--surface-dark);
+  --color-surface-dark-elevated: var(--surface-dark-elevated);
+  --color-on-dark: var(--on-dark);
+  --color-on-dark-soft: var(--on-dark-soft);
+
+  --color-hairline: var(--hairline);
+  --color-hairline-soft: var(--hairline-soft);
+  --color-hairline-strong: var(--hairline-strong);
+
+  --color-sky-light: var(--sky-light);
+  --color-sky-mid: var(--sky-mid);
+
+  --color-warning: var(--semantic-warning);
+  --color-preview: var(--semantic-preview);
+  --color-success: var(--semantic-success);
+  --color-error: var(--semantic-error);
+
+  /* Radius Tokens */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-xxl: 24px;
+  --radius-pill: 9999px;
+
+  /* Elevation Shadows */
+  --shadow-card-soft: var(--shadow-card);
+  --shadow-card-hover: var(--shadow-card-hover);
+}
+
+/* ─── 3. Dark Mode Custom Variant ─── */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ─── 4. Global Density & Layout Reset (90% Desktop Scale) ─── */
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+/* ─── 4. Global Density & Layout Reset ─── */
+html {
+  background-color: var(--canvas);
+  color: var(--ink);
+  font-family: var(--font-poppins);
+  /* Use Poppins for standard UI text */
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background-color: var(--canvas);
+  color: var(--ink);
+  font-family: var(--font-poppins);
+  line-height: 1.5;
+
+  /* Reset scale back to 100% native resolution */
+  zoom: 1;
+}
+
+/* Reset zoom scale on mobile/tablet devices for standard tap targets */
+@media (max-width: 768px) {
+  body {
+    zoom: 1;
+  }
+}
+
+/* ─── 5. Code & Text Contextual Presets ─── */
+code,
+pre,
+kbd,
+samp {
+  font-family: var(--font-mono);
+}
+
+/* ─── 6. Adaptive Scrollbars ─── */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--hairline-strong);
+  border-radius: var(--radius-pill);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--muted);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ─── 7. Atmospheric Hero Gradient Wash ─── */
+.hero-atmospheric-wash {
+  background: radial-gradient(50% 60% at 50% 40%,
+      var(--sky-light) 0%,
+      var(--sky-mid) 50%,
+      transparent 100%);
+  opacity: 0.65;
+  filter: blur(54px);
+  pointer-events: none;
+}
+
+/* ─── 8. UI Motion Keyframes ─── */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes waveHand {
+
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+
+  10%,
+  30% {
+    transform: rotate(14deg);
+  }
+
+  20% {
+    transform: rotate(-8deg);
+  }
+
+  40% {
+    transform: rotate(-4deg);
+  }
+
+  50% {
+    transform: rotate(10deg);
+  }
+
+  60% {
+    transform: rotate(0deg);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-slideUp {
+  animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.wave-hand {
+  display: inline-block;
+  transform-origin: 70% 70%;
+  animation: waveHand 2s;
+}
